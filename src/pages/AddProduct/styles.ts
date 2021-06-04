@@ -4,7 +4,7 @@ import { fonts } from '../../theme/fonts';
 
 
 export const NestView = styled.KeyboardAvoidingView`
-
+  flex:1;
 `;
 
 export const Wrapper = styled.SafeAreaView`
@@ -15,11 +15,9 @@ export const Wrapper = styled.SafeAreaView`
 
 
 export const Container = styled.View`
-  flex: 1;
-  margin: 20px 0;
-  padding: 0 15px;
-  position: absolute;
-  width: 100%;
+  justify-content: center;
+  padding: 0 20px 100px;
+  position: relative;
 `;
 
 export const FormContainer = styled.View`
@@ -35,18 +33,22 @@ export const Header = styled.View`
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  height: 40px;
-  width: 40px;
+  margin-top: 50px;
 `;
 
 
-export const SaveProductButton = styled.TouchableOpacity``;
+export const SaveProductButton = styled.TouchableOpacity`
+  margin-top: -25px;
+  align-self: flex-end;
+`;
 export const SaveProductLabel = styled.Text``;
 
 export const ImagePickerContainer = styled.View`
-  align-items: center;
+  margin-top: 32px;
 
 `;
+
+
 
 
 

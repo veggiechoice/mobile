@@ -235,30 +235,29 @@ const AddProduct: React.FC = () => {
   }
 
   return (
-    <Wrapper>
-        <ScrollView
-          keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{ flex: 1 }}
-          nestedScrollEnabled={true}
-        >
+    <>
+
           <NestView
-            style={{ flex: 1 }}
-            behavior={Platform.OS === 'ios' ? 'position' : 'position'}
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
             enabled
           >
+          <ScrollView
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+            nestedScrollEnabled={true}
+          >
           <Container>
-            <Header>
-              <BackButton onPress={() => handleGoBack()}>
-                <Entypo name="chevron-left" size={24} color={colors['green-700']} />
-              </BackButton>
-              <SaveProductButton onPress={() => handleSaveSelected()}>
-                <SaveProductLabel>{changeSelectLabelFunction()}</SaveProductLabel>
-              </SaveProductButton>
-            </Header>
-            <Form ref={formRef} onSubmit={handleSubmit}>
+            <BackButton onPress={() => handleGoBack()}>
+              <Entypo name="chevron-left" size={24} color={colors['green-700']} />
+            </BackButton>
+            <SaveProductButton onPress={() => handleSaveSelected()}>
+              <SaveProductLabel>{changeSelectLabelFunction()}</SaveProductLabel>
+            </SaveProductButton>
+
               <ImagePickerContainer>
                 <ImagePicker image={image} setImage={setImage} />
               </ImagePickerContainer>
+              <Form ref={formRef} onSubmit={handleSubmit}>
                 {
                   formState === 'PRODUCT_INFO' ? (
                     <FormContainer>
@@ -340,9 +339,9 @@ const AddProduct: React.FC = () => {
                 }
             </Form>
           </Container>
+          </ScrollView>
         </NestView>
-      </ScrollView>
-    </Wrapper>
+    </>
   );
 }
 

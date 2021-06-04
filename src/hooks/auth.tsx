@@ -14,6 +14,7 @@ interface User {
   id: string;
   name: string;
   email: string;
+  password: string;
   avatar_url: string;
 }
 interface AuthState {
@@ -39,24 +40,14 @@ const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function loadStoragedData(): Promise<void> {
-      // const token = await AsyncStorage.getItem(
-      //   '@VeganApp:token',
-      // );
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjI3NDc0NDEsImV4cCI6MTYyMzM1MjI0MSwic3ViIjoiYzdkMjQ4NjMtNjBjZi00ZDIzLTgzY2UtZGE4OTljZTRmMWIzIn0.XrhskQaMB7rrdzHAs7qDAbiYL7qaCzs8fLHlBPoSt3k";
-      // const user = await AsyncStorage.getItem('@VeganApp:user');
-      const user = {
-        id: "c7d24863-60cf-4d23-83ce-da899ce4f1b3",
-        name: "Gabriel",
-        email: "teste@email.com",
-        createdAt: "2021-06-03T17:18:55.851Z",
-        updatedAt: "2021-06-03T17:18:55.851Z",
-        address: null,
-        avatar_url: "https://veggie-choice-app.s3.us-east-2.amazonaws.com/3ff840d762a192e2ff88-95b8227c645804af2d69-552A65E6-FD66-4573-9DC3-E3A0DC0898B8.JPG"
-      };
+      const token = await AsyncStorage.getItem(
+        '@VeganApp:token',
+      );
+      const user = await AsyncStorage.getItem('@VeganApp:user');
 
       if (token && user) {
         api.defaults.headers.Authorization = `Bearer ${token}`;
-        setData({ token: token, user: user });
+        setData({ token: token, user: JSON.parse(user) });
       }
 
       setLoading(false);

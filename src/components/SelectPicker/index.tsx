@@ -42,14 +42,16 @@ const pickerSelectStyles = StyleSheet.create({
     marginTop: 10
   },
   inputAndroid: {
+    height: 45,
     fontSize: 16,
+    paddingVertical: 12,
     paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: 'purple',
-    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#000',
+    borderRadius: 4,
     color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
+    marginTop: 10
   },
 });
 export default SelectPicker;

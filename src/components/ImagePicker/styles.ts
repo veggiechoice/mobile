@@ -10,6 +10,7 @@ export const Container = styled.TouchableOpacity`
 
   align-items: center;
   justify-content: center;
+  align-self: center;
 
 `;
 

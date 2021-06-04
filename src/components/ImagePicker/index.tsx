@@ -1,6 +1,4 @@
 import React, { ReactNode, useState } from 'react';
-
-
 import { Container, ProductImage, ProductImageFilled } from './styles';
 import cameraIcon from '../../assets/icons/camera.png';
 import * as ImagePicker from 'expo-image-picker';
@@ -16,12 +14,6 @@ interface ImagePickerComponentProps {
 function ImagePickerComponent({ image, setImage }: ImagePickerComponentProps) {
 
   const pickImage = async () => {
-    if (Platform.OS !== 'web') {
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Sorry, we need camera roll permissions to make this work!');
-      }
-    }
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,

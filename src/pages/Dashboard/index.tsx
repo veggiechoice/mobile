@@ -120,7 +120,7 @@ const Dashboard: React.FC = () => {
       if(user.avatar_url === 'https://veggiechoice.herokuapp.com/null') {
         return nouserSrc;
       }
-      return {uri: user.avatar_url};
+      return { uri: user.avatar_url };
     } else {
       return nouserSrc;
     }

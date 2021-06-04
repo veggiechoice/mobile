@@ -10,6 +10,7 @@ import SearchPage from "../../pages/SearchPage";
 import ChangeProfile from "../../pages/ChangeProfile";
 import Map from "../../pages/Map";
 
+
 const Stack = createStackNavigator();
 
 const forFade = ({ current }: any) => ({

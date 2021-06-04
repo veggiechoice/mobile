@@ -8,7 +8,8 @@ import { Text, View } from "react-native";
 import Profile from "../../pages/Profile";
 const Drawer = createDrawerNavigator();
 import ScannProduct from '../../pages/ScannProduct';
-import Map from '../../pages/Map';
+import Map from "../../pages/Map";
+
 
 const DrawerNavigator = () => {
   return (
@@ -59,23 +60,23 @@ const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name="Meus Produtos"
-        component={Profile}
-        options={{
-          drawerIcon: ({color, size, focused}) => {
-            return (
-              <AntDesign name="tag" size={size} color={focused ? '#283618' : color} />
-            )
-          }
-        }}
-      />
-      <Drawer.Screen
         name="Escanear produto"
         component={ScannProduct}
         options={{
           drawerIcon: ({color, size, focused}) => {
             return (
               <AntDesign name="scan1"  size={size} color={focused ? '#283618' : color} />
+            )
+          }
+        }}
+      />
+      <Drawer.Screen
+        name="Importar rótulo"
+        children={() => <ScannProduct isLongPressed={false}/>}
+        options={{
+          drawerIcon: ({color, size, focused}) => {
+            return (
+              <AntDesign name="clouduploado"  size={size} color={focused ? '#283618' : color} />
             )
           }
         }}

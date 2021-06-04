@@ -32,21 +32,35 @@ export default function ScannPage({ isLongPressed = false }:ScannPageProps) {
   }, [isFocused]);
 
   const __startCamera = async () => {
+    try {
+      const { status } = await Camera.requestPermissionsAsync();
+      if (status === 'granted') {
+        const photo = await ImagePicker.launchCameraAsync();
+        if(!photo.cancelled) {
+          if(photo.uri) {
+            let localUri = photo.uri;
+            let filename = localUri.split('/').pop();
 
-    const {status} = await Camera.requestPermissionsAsync()
-    if (status === 'granted') {
-      const photo = await ImagePicker.launchCameraAsync();
-      if(!photo.cancelled) {
-        setCapturedImage(photo);
-        MediaLibrary.saveToLibraryAsync(photo.uri);
-        pickImage();
-      }
-      else {
-        navigation.navigate('Home');
-      }
+            // Infer the type of the image
+            let match = /\.(\w+)$/.exec(filename as string);
+            let type = match ? `image/${match[1]}` : `image`;
+            setCapturedImage({
+              name: filename,
+              uri: localUri,
+              type: type
+            });
+            __sendToServer();
+          }
+        }
+        else {
+          navigation.navigate('Home');
+        }
 
-    } else {
-      Alert.alert('Access denied')
+      } else {
+        Alert.alert('Access denied')
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
   const __sendToServer = async () => {
@@ -84,10 +98,8 @@ export default function ScannPage({ isLongPressed = false }:ScannPageProps) {
         setLoading(false);
       }
     } catch (error) {
-      pickImage();
       setLoading(false);
       navigation.navigate('Home');
-
     }
 
   }
@@ -120,7 +132,7 @@ export default function ScannPage({ isLongPressed = false }:ScannPageProps) {
           uri: localUri,
           type: type
         });
-        // console.log(capturedImage);
+
         __sendToServer();
       } else {
         navigation.navigate('Home');
